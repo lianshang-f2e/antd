@@ -10,7 +10,7 @@
       <a-dropdown :trigger="['hover']">
         <div class="avatar-box">
           <a-avatar class="avatar" icon="user" />
-          {{ userInfo.realName || '我的' }}
+          <span v-text="userInfo.realName || '我的'"></span>
         </div>
         <a-menu slot="overlay">
           <a-menu-item key="logout">
