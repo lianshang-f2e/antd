@@ -33,7 +33,7 @@
 // import Vue from 'vue'
 // import { Upload, Modal, Message } from 'ant-design-vue'
 import axios from '@/components/axios'
-import util from '@/util/index'
+import {util} from '@/util/index'
 
 // Vue.component(Upload.name, Upload)
 // Vue.component(Modal.name, Modal)
