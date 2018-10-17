@@ -1,8 +1,8 @@
 {
-  "name": "vue-omniscient",
+  "name": "{{ name }}",
   "version": "1.0.0",
-  "description": "A Vue.js project",
-  "author": "吴茂芳 <maofang.wu@lianshang.com>",
+  "description": "{{ description }}",
+  "author": "{{ author }}",
   "private": true,
   "scripts": {
     "mock:dev": "cross-env NODE_ENV=dev MOCK=mock webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
