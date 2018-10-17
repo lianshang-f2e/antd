@@ -2,7 +2,7 @@
   <div class="login" :style="{backgroundImage: 'url(' + loginbg + ')' }">
     <!-- logo -->
     <div class="logo">
-      <img :src="logo" alt="" style="width: 400px; padding: 20px 0;">
+      <img :src="logo" alt="">
     </div>
     <!-- 提示框 -->
     <div class="content" :style="{backgroundImage: 'url(' + contentbg + ')' }">
