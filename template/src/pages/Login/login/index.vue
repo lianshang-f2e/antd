@@ -33,14 +33,8 @@
 import loginbg from '@/assets/login/1.jpg'
 import logo from '@/assets/logo.png'
 import contentbg from '@/assets/login/bg-white-lock.png'
-// import Vue from 'vue'
-// import { Input, Button, Icon } from 'ant-design-vue'
 import moduleName from './store'
 import { mapState, mapActions, mapGetters } from 'vuex'
-
-// Vue.component(Icon.name, Icon)
-// Vue.component(Input.name, Input)
-// Vue.component(Button.name, Button)
 
 export default {
   name: 'login',

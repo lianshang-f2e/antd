@@ -116,28 +116,19 @@
         </a-col>
       </a-row>
     </div>
-    <!-- address -->
-    <!-- <address-list pid="" @change="newhange"></address-list> -->
   </div>
 </template>
 
 <script>
-// import Vue from 'vue'
-// import { Row, Col } from 'ant-design-vue'
 import moduleName from './store'
 import { mapState, mapActions } from 'vuex'
 import dingdanbg from '@/assets/home/img_dingdan.png'
 import madanbg from '@/assets/home/img_madan.png'
 import xunjiabg from '@/assets/home/img_xunjia.png'
-// import addressList from '@/components/addressList'
-
-// Vue.component(Row.name, Row)
-// Vue.component(Col.name, Col)
 
 export default {
   name: 'home',
   components: {
-  // addressList
   },
   data () {
     return {
