@@ -93,7 +93,7 @@ module.exports = {
     'vue': 'Vue',
     'vue-router': 'VueRouter',
     'vuex': 'Vuex',
-    'ant-design-vue':'antd',
+    // 'ant-design-vue':'antd',
     'axios':'axios',
     'moment':'moment'
   }
