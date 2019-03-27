@@ -1,6 +1,6 @@
-# vue-omniscient
+# {{ name }}
 
-> 向日葵后台管理系统
+> {{ chinesename }}
 
 ## Build Setup
 
@@ -24,6 +24,18 @@ npm run build:alpha
 npm run build:prelease
 npm run build:production
 
+# panda构建dev,alpha,prelease,production的包
+npm run panda:dev
+npm run panda:alpha
+npm run panda:prelease
+npm run panda:production
+
+# panda构建过程
+## 1.执行npm install --registry=https://registry.npm.taobao.org
+## 2.构建dev,alpha,prelease,production的包
+## 3.上传静态资源到oss
+## 4.移动静态资源目录
+
 ```
 
 <!-- For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader). -->
@@ -45,10 +57,9 @@ npm run build:production
 ## 注意事项
 
 ``` bash
-# 1. 不可直接引入ant-design-vue，这样会把整个ant-design-vue项目打包进去，造成打包文件很大
-import ant from 'ant-design-vue'
+# 1. 开始构建这项目的时候，考虑一个页面对应一个store.js，实现视图和数据完全分离。但实现的时候，出现很多问题，所以并不建议如此方式，但针对异常复杂的页面，各子组件交互复杂时，可使用这种方法。
 
-# 2. /src/pages/下的文件夹首字母必须大写，同时里面对应的routes.js的path必须是当前文件夹名开头
+# 2. 已经在项目里全局引入ant-design-vue，所以可以直接在项目中使用ant-design-vue的组件。（因为全局引入，开发方便太多了，故去掉按需加载方式加载ant-design-vue组件）
 
 # 3. mock数据修改后，要重启服务
 ```

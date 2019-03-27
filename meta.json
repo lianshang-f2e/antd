@@ -3,7 +3,12 @@
     "name": {
       "type": "string",
       "required": true,
-      "message": "Project name"
+      "message": "项目英文名"
+    },
+    "chinesename": {
+      "type": "string",
+      "required": true,
+      "message": "项目中文名。例：xxx后台管理系统"
     },
     "description": {
       "type": "string",

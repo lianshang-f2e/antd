@@ -12,6 +12,12 @@ $ npm install
 $ npm run dev
 ```
 
+## 上传oss配置
+``` bash
+在‘./uploadToOss/index.js’，配置accessKeyId和accessKeySecret俩个字段
+这俩个字段在其他项目(vue-sso,nuxt-xxx)中找，不对外开放
+```
+
 ### 构建自己的项目
 
 ``` bash

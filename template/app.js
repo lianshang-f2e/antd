@@ -8,10 +8,10 @@ let port = process.env.PORT || config.build.nodePort;
 var compression = require('compression')
 app.use(compression())
 
-app.use(express.static(path.resolve(__dirname, './dist/')));
+app.use(express.static(path.resolve(__dirname, './www/')));
 
 app.all('*', function (req, res) {
-    res.sendFile('./dist/index.html', {
+    res.sendFile('./www/index.html', {
         root: __dirname
     });
 });

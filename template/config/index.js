@@ -1,6 +1,10 @@
 'use strict'
 // Template version: 1.3.1
 // see http://vuejs-templates.github.io/webpack for documentation.
+const uploadDirToOss = require('upload-dir-to-oss')
+const ossConfig = require('./uploadOss.env.js')
+uploadDirToOss.createVersionFile()
+let version = uploadDirToOss.getVersion()
 
 const path = require('path')
 const mockPort = 6030
@@ -57,7 +61,7 @@ module.exports = {
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
+    assetsPublicPath: ossConfig.ossHost + ossConfig.ossDir + version + '/',
 
     /**
      * Source Maps
