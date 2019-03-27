@@ -1,4 +1,5 @@
 import axiosLib from 'axios'
+import vue from 'vue'
 import { baseUrl, mockBaseUrl, jumpToLogin } from '@/config/env'
 import router from '../router/index'
 import { notification } from 'ant-design-vue'
@@ -57,5 +58,5 @@ axios.interceptors.response.use((res) => {
   }
   return rej
 })
-
+vue.prototype.$axios = axios
 export default axios

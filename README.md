@@ -2,10 +2,6 @@
 
 > 基于vue,vuex,vue-router,ant-design-vue,axios的开发框架
 
-## 使用文档
-
-使用文档请参考[向日葵系统](http://git.lsfash.cn/f2e/vue-omniscient)(公司内网)
-
 ## 用法
 
 ``` bash
