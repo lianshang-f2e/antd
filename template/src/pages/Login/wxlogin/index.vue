@@ -2,17 +2,17 @@
   <div class="wxlogin" :style="{backgroundImage: 'url(' + loginbg + ')' }">
     <!-- logo -->
     <div class="logo">
-      <img :src="logo" alt="" style="width: 480px;">
+      <img :src="logo" alt="" style="width: 142px;">
     </div>
     <!-- 提示框 -->
     <div class="content">
-      <a href="javascript:;" @click="goWxLoginForClick">
+      <a href="javascript:;" @click="goLogin">
         <img :src="wxlogo" alt=""> <br />
         <span>微信登录</span>
       </a>
     </div>
     <!-- 底部 -->
-    <div class="login-footer">lianshang.com ©2018 Created by 链尚信息科技（上海）有限公司</div>
+    <div class="login-footer">yb.lianshang.com ©2018 Created by 链尚信息科技（上海）有限公司</div>
   </div>
 </template>
 
@@ -21,8 +21,7 @@ import loginbg from '@/assets/login/1.jpg'
 import logo from '@/assets/logo.png'
 import wxlogo from '@/assets/wechat.png'
 import { ssoHost } from '@/config/env'
-import axios from '@/components/axios'
-import { Message } from 'ant-design-vue'
+// import server from '../server'
 
 export default {
   name: 'wxlogin',
@@ -30,46 +29,35 @@ export default {
     return {
       loginbg,
       logo,
-      wxlogo,
-      status: null
+      wxlogo
     }
   },
   methods: {
-    goWxLogin () {
-      if (this.status) {
-        return false
-      }
+    goLogin () {
       var origin = window.location.origin
-      var pathname = window.location.pathname
-      var wxloginUrl = ssoHost + '/sso/oauth2/authorize?redirect_uri=' + encodeURIComponent(origin + pathname) + '&t=' + (+new Date())
-      if (this.$route.query.code) {
-        axios.get('/web/user/wxlogin?code=' + this.$route.query.code).then(data => {
-          if (data.code === 200) {
-            if (data.data.client_identify) {
-              Message.warning('微信登录失败，请用帐号登录')
-              this.$router.push('/login')
-            } else {
-              document.cookie = 'token=' + data.data.token
-              Message.success('登录成功')
-              window.location.href = '/index/home'
-            }
-          }
-        })
-      } else {
-        window.location.href = wxloginUrl
-      }
-    },
-    goWxLoginForClick () {
-      if (this.status) {
-        this.status = null
-      }
-      this.goWxLogin()
+      var pathname = '/wxlogin'
+      window.location.href = ssoHost + '/wxwork/oauth2/authorize?appId=5&type=2&redirect_uri=' + encodeURIComponent(origin + pathname) + '&t=' + (+new Date())
+      // server.getLoginWay().then((res) => {
+      //   if (res.code === 200) {
+      //     if (res.data.way === 'up') {
+      //       // sso账号登录
+      //       this.$router.push('/login')
+      //     } else {
+      //        // 企微登录
+      //        window.location.href = ssoHost + '/wxwork/oauth2/authorize?appId=5&type=2&redirect_uri=' + encodeURIComponent(origin + pathname) + '&t=' + (+new Date())
+      //     }
+      //   }
+      // })
     }
   },
   created () {
-    var status = this.$route.query.status
-    this.status = status
-    this.goWxLogin()
+    var token = this.$route.query.token
+    if (token) {
+      window.localStorage.setItem('token', token)
+      this.$router.push('/index/home')
+    } else {
+      this.goLogin()
+    }
   }
 }
 </script>

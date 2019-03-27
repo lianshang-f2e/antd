@@ -25,7 +25,7 @@
       <a-button type="primary" size="large" icon="login" class="login-btn" :loading="isLogin" @click="goLogin">登录</a-button>
     </div>
     <!-- 底部 -->
-    <div class="login-footer">sunflower.lianshang.com ©2018 Created by 链尚信息科技（上海）有限公司</div>
+    <div class="login-footer">yb.lianshang.com ©2018 Created by 链尚信息科技（上海）有限公司</div>
   </div>
 </template>
 
@@ -33,8 +33,8 @@
 import loginbg from '@/assets/login/1.jpg'
 import logo from '@/assets/logo.png'
 import contentbg from '@/assets/login/bg-white-lock.png'
-import moduleName from './store'
-import { mapState, mapActions, mapGetters } from 'vuex'
+import server from '../server'
+import { domainName } from '@/config/env'
 
 export default {
   name: 'login',
@@ -42,26 +42,37 @@ export default {
     return {
       loginbg: loginbg,
       contentbg: contentbg,
-      logo: logo
+      logo: logo,
+      loginFrom: {}
     }
   },
-  computed: {
-    ...mapGetters(moduleName, [
-    ]),
-    ...mapState(moduleName, {
-      isLogin: state => state.isLogin,
-      loginFrom: state => state.loginFrom
-    })
-  },
   methods: {
-    ...mapActions(moduleName, [
-      'goLogin'
-    ]),
     clearUserName () {
       this.loginFrom.mobile = ''
     },
     clearPassWord () {
       this.loginFrom.password = ''
+    },
+    goLogin () {
+      let params = {
+        appId: 5,
+        domainName: domainName,
+        mobile: this.loginFrom.mobile,
+        password: this.loginFrom.password,
+        loginType: 2
+      }
+      if (!(/^1[3|4|5|6|7|8][0-9]\d{8}$/.test(this.loginFrom.mobile))) {
+        this.$message.info('请正确客户手机号码')
+        return false
+      }
+      console.log(123)
+      server.loginForAccount(params).then((res) => {
+        console.log(res)
+        if (res.code === 200) {
+          window.localStorage.setItem('token', res.data.token)
+          // this.$router.push('/index/home')
+        }
+      })
     }
   }
 }
