@@ -53,8 +53,8 @@ module.exports = {
   },
 
   build: {
-    nodePort: 7000,
-    zipFileName: 'argus.zip',
+    nodePort: 7030,
+    zipFileName: '{{ name }}.zip',
     // Template for index.html
     index: path.resolve(__dirname, '../dist/index.html'),
 

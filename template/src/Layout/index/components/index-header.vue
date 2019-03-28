@@ -49,6 +49,7 @@
 </template>
 
 <script>
+import { ssoHost } from '@/config/env'
 
 export default {
   data () {
