@@ -2,7 +2,7 @@
   <a-layout-header class="header">
     <!-- logo -->
     <div class="logo">
-      <img :src="logo" alt="">
+      <img src="@/assets/logo.png" alt="">
     </div>
     <!-- 右边 -->
     <div class="header-right">
@@ -23,7 +23,8 @@
     <a-menu
       theme="dark"
       mode="horizontal"
-      :defaultSelectedKeys="['1']"
+      v-model="selectedKeys"
+      :defaultSelectedKeys="['home']"
       :style="{ lineHeight: '64px' }"
       @click="handleClick"
     >
@@ -48,12 +49,11 @@
 </template>
 
 <script>
-import logo from '@/assets/logo.png'
 
 export default {
   data () {
     return {
-      logo
+      selectedKeys: null
     }
   },
   computed: {
@@ -72,10 +72,30 @@ export default {
     },
     // 退出登录
     logout () {
-      let url = '/wxlogin?status=logout'
-      var date = new Date(+new Date() - 100000000)
-      window.document.cookie = 'token' + '=' + ' ' + ';expires=' + date.toUTCString()
-      window.location.href = url
+      var origin = window.location.origin
+      var pathname = '/wxlogin'
+      window.localStorage.removeItem('token')
+      window.location.href = ssoHost + '/home/admin/logout?returnUrl=' + encodeURIComponent(origin + pathname)
+    },
+    changeUrl () {
+      let path = this.$route.path
+      if (path.indexOf('index/home') > -1) {
+        this.selectedKeys = 'home'
+      } else if (path.indexOf('/index/cloth') > -1) {
+        this.selectedKeys = 'clothList'
+      } else if (path.indexOf('/index/clientList') > -1) {
+        this.selectedKeys = 'clientList'
+      } else if (path.indexOf('/index/order') > -1) {
+        this.selectedKeys = 'orderList'
+      }
+    }
+  },
+  created () {
+    this.changeUrl()
+  },
+  watch: {
+    $route () {
+      this.changeUrl()
     }
   }
 }
